@@ -870,8 +870,71 @@ body.light-theme {
   color: var(--text-secondary);
 }
 
+/* Quick Live API Box in Sidebar */
+.live-api-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.api-box-title {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.api-input-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.api-quick-input {
+  flex: 1;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.api-quick-input:focus {
+  border-color: var(--primary);
+}
+
+.api-quick-btn {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.api-quick-btn:hover {
+  background: var(--primary-hover);
+}
+
+.api-hint {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
 /* Responsive */
 @media (max-width: 850px) {
   .chat-app-container { flex-direction: column; }
   .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-light); }
 }
+

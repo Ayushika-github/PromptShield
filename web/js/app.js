@@ -144,6 +144,25 @@ function updateUIWithStatus(status) {
   const headerStatusText = document.getElementById("headerStatusText");
   const miniAsr = document.getElementById("miniAsr");
 
+  const modelLabel = document.getElementById("sidebarModelName");
+  const apiHint = document.getElementById("apiStatusHint");
+
+  if (status.provider === "gemini" && status.has_api_key) {
+    if (modelLabel) modelLabel.textContent = "Engine: Live Google Gemini 1.5 Flash ⚡";
+    if (apiHint) {
+      apiHint.textContent = "✅ Connected to Live Gemini 1.5 Flash API!";
+      apiHint.style.color = "var(--success)";
+    }
+  } else if (status.provider === "custom_endpoint") {
+    if (modelLabel) modelLabel.textContent = "Engine: Custom Webhook Endpoint";
+  } else {
+    if (modelLabel) modelLabel.textContent = "Engine: Dynamic Context-Aware NLP";
+    if (apiHint) {
+      apiHint.textContent = "Currently running offline dynamic NLP engine.";
+      apiHint.style.color = "var(--text-muted)";
+    }
+  }
+
   if (status.is_hardened) {
     pill.className = "status-pill status-protected";
     pillText.textContent = "PROTECTED";
@@ -164,6 +183,41 @@ function updateUIWithStatus(status) {
     miniAsr.style.color = "var(--danger)";
   }
 }
+
+// Quick Gemini API Key Connect
+const quickApiBtn = document.getElementById("activateApiKeyBtn");
+const quickApiInput = document.getElementById("sidebarQuickApiKey");
+if (quickApiBtn && quickApiInput) {
+  quickApiBtn.addEventListener("click", async () => {
+    const key = quickApiInput.value.trim();
+    if (!key) {
+      alert("Please paste a valid Google Gemini API Key.");
+      return;
+    }
+    quickApiBtn.textContent = "Connecting...";
+    try {
+      const res = await fetch("/api/bot/configure", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          provider: "gemini",
+          api_key: key,
+          model_name: "gemini-1.5-flash"
+        })
+      });
+      if (res.ok) {
+        await fetchBotStatus();
+        quickApiBtn.textContent = "Connected ✓";
+        quickApiInput.value = "";
+        appendSystemNotice("⚡ Connected to Live Google Gemini 1.5 Flash API! Live neural execution active.");
+      }
+    } catch (e) {
+      console.error(e);
+      quickApiBtn.textContent = "Connect";
+    }
+  });
+}
+
 
 // Shield ON / OFF quick toggle
 const toggleShieldBtn = document.getElementById("toggleShieldBtn");
