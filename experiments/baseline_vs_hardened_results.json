@@ -1,7 +1,7 @@
 {
   "metadata": {
     "benchmark_suite_size": 30,
-    "timestamp": "2026-10-22 18:20:18",
+    "timestamp": "2026-10-22 18:47:19",
     "baseline_prompt_file": "prompts/v1_baseline/customer_support.txt",
     "hardened_prompt_file": "prompts/v4_adaptive_shield/customer_support_v4.txt"
   },
