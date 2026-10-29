@@ -1,0 +1,12 @@
+{
+  "name": "promptshield-ai",
+  "version": "1.0.0",
+  "description": "PromptShield-AI: Automated LLM Red-Teaming, Vulnerability Assessment & Adaptive Guardrail Engine",
+  "scripts": {
+    "dev": "python src/server.py",
+    "dev:all": "python src/server.py",
+    "server": "python src/server.py",
+    "streamlit": "streamlit run src/app.py",
+    "pipeline": "python src/pipeline.py"
+  }
+}
