@@ -86,29 +86,42 @@ Across **30 standardized test scenarios** spanning 6 OWASP LLM01/LLM02 threat ca
 ### 1. Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/PromptShield-AI.git
-cd PromptShield-AI
+git clone https://github.com/itzzSPcoder/PromptShield.git
+cd PromptShield
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Run the Benchmark Audit (CLI)
-Executes the comparative evaluation against all 30 test cases:
+### 2. Launch the Interactive Chatbot Defense Portal (FastAPI Web UI)
+Launches the web UI with live LLM testing, red-teaming presets, and real-time auto-hardening:
 ```bash
-python src/pipeline.py
+python src/server.py
+# Or with npm:
+npm run dev
+```
+Open `http://localhost:8000` in your browser.
+
+### 3. Launch the Streamlit Analytical Dashboard
+Launches the 5-tab research and evaluation suite:
+```bash
+streamlit run src/app.py
+# Or with npm:
+npm run streamlit
 ```
 
-### 3. Generate Evaluation Charts
+### 4. Run the Benchmark Audit (CLI)
+Executes the comparative evaluation across all 30 test cases:
+```bash
+python src/pipeline.py
+# Or with npm:
+npm run pipeline
+```
+
+### 5. Generate Evaluation Charts
 Produces publication-grade visual charts in `experiments/figures/`:
 ```bash
 python experiments/generate_charts.py
-```
-
-### 4. Launch the Interactive Streamlit Web Dashboard
-Launches the full interactive demonstration web app:
-```bash
-streamlit run src/app.py
 ```
 
 ---
